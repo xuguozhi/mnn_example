@@ -70,8 +70,7 @@ int ZQLandmarker::ExtractKeypoints(const cv::Mat& img_src, const cv::Rect& face,
     int height = img_face.rows;
     cv::Mat img_resized;
     cv::resize(img_face, img_resized, inputSize_);
-    uint8_t* data_ptr = GetImage(img_resized);
-	pretreat_->convert(data_ptr, inputSize_.width, inputSize_.height, 0, input_tensor_);
+	pretreat_->convert(img_resized.data, inputSize_.width, inputSize_.height, 0, input_tensor_);
 
     // run session
     zq_interpreter_->runSession(zq_sess_);

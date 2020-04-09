@@ -73,8 +73,7 @@ int PFLDLandmarker::ExtractKeypoints(const cv::Mat& img_src, const cv::Rect& fac
     cv::resize(img_face, img_resized, inputSize_);
     float scale_x = static_cast<float>(width) / inputSize_.width;
     float scale_y = static_cast<float>(height) / inputSize_.height;
-    uint8_t* data_ptr = GetImage(img_resized);
-	pretreat_->convert(data_ptr, inputSize_.width, inputSize_.height, 0, input_tensor_);
+	pretreat_->convert(img_resized.data, inputSize_.width, inputSize_.height, 0, input_tensor_);
 
     // run session
     pfld_interpreter_->runSession(pfld_sess_);
